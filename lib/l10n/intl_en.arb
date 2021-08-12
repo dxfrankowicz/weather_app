@@ -1,0 +1,8 @@
+{
+  "humidity": "Humidity",
+  "airPressure": "Air pressure",
+  "wind": "Wind",
+  "noInternetConnectionError": "No internet connection",
+  "commonError": "Error has occurred",
+  "retry": "Retry"
+}
