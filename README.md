@@ -8,8 +8,7 @@ A weather app in Flutter based on metaweather API.
 - Dynamic temperature unit change (C/F)
 - Displaying weather SVG icon
 
-![Portrait screen](screenshots/Screenshot_1628798789.png "Portrait screen")
-![Landscape screen](screenshots/Screenshot_1628798784.png "Landscape screen")
-
+<img alt="Portrait screen" src="screenshots/Screenshot_1628798789.png" title="Portrait screen" width="50%" height="50%/">
+<img alt="Landscape screen" src="screenshots/Screenshot_1628798784.png" title="Landscape screen" width=50% height=50%/>
 
 
