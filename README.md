@@ -10,7 +10,7 @@ A weather app in Flutter based on metaweather API.
 - Location search (can display weather for chosen city)
 
 <img alt="Portrait screen" src="screenshots/Screenshot_1629017233.png" title="Portrait screen" width="50%" height="50%/">
-<img alt="Landscape screen" src="screenshots/Screenshot_1629017288.png" title="Landscape screen" width=50% height=50%/>
+<img alt="Landscape screen" src="screenshots/Screenshot_1629017260.png" title="Landscape screen" width=50% height=50%/>
 <img alt="Search location" src="screenshots/Screenshot_1629017288.png" title="Search location" width=50% height=50%/>
 
 
