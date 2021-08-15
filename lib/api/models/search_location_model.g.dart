@@ -12,7 +12,7 @@ SearchLocationModel _$SearchLocationModelFromJson(Map<String, dynamic> json) {
     json['location_type'] as String,
     json['woeid'] as int,
     json['latt_long'] as String,
-    json['distance'] as int,
+    json['distance'] as int?,
   );
 }
 

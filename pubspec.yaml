@@ -37,6 +37,8 @@ dependencies:
   flutter_svg:
   sizer:
   shimmer:
+  dropdown_search:
+  location:
 # API fetching
   dio: ^4.0.0
   retrofit: ^2.0.1

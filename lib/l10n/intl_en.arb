@@ -4,5 +4,6 @@
   "wind": "Wind",
   "noInternetConnectionError": "No internet connection",
   "commonError": "Error has occurred",
-  "retry": "Retry"
+  "retry": "Retry",
+  "searchLocation": "Search location"
 }

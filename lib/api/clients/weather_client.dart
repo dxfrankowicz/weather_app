@@ -14,7 +14,7 @@ abstract class WeatherClient {
 
   @GET("/location/search/")
   Future<List<SearchLocationModel>> searchLocationByName(
-      @Query("location") String location);
+      @Query("query") String location);
 
   @GET("/location/search/")
   Future<List<SearchLocationModel>> searchLocationByLatLong(

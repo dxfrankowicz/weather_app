@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -11,7 +10,9 @@ import 'package:weather_app/api/di/di.dart';
 import 'package:weather_app/api/models/consolidated_weather.dart';
 import 'package:weather_app/components/base_scaffold.dart';
 import 'package:weather_app/components/error_view.dart';
+import 'package:weather_app/components/rounded_input_text_field.dart';
 import 'package:weather_app/generated/l10n.dart';
+import 'package:weather_app/pages/weather/weather_search_store.dart';
 import 'package:weather_app/pages/weather/weather_store.dart';
 import 'package:weather_app/utils/date_utils/my_date_utlls.dart';
 import 'package:weather_app/utils/svg/get_svg.dart';
@@ -26,12 +27,14 @@ class WeatherPage extends StatefulWidget {
 
 class _WeatherPageState extends State<WeatherPage> {
   WeatherStore weatherStore = getIt<WeatherStore>();
+  WeatherSearchStore weatherSearchStore = getIt<WeatherSearchStore>();
+
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
 
   @override
   void initState() {
-    weatherStore.init(44418);
+    weatherStore.getLocationAndInit();
     super.initState();
   }
 
@@ -57,7 +60,7 @@ class _WeatherPageState extends State<WeatherPage> {
         padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: weatherStore.isLoadingWeather
+          children: weatherStore.isLoading
               ? List.generate(
                   5,
                   (index) => Expanded(
@@ -241,7 +244,7 @@ class _WeatherPageState extends State<WeatherPage> {
       child: ListView(
           scrollDirection: Axis.horizontal,
           shrinkWrap: true,
-          children: weatherStore.isLoadingWeather
+          children: weatherStore.isLoading
               ? List.generate(
                   5,
                   (index) => Shimmer.fromColors(
@@ -374,25 +377,59 @@ class _WeatherPageState extends State<WeatherPage> {
   @override
   Widget build(BuildContext context) {
     return WEATHERScaffold.get(context,
-        actions: TempUnit.values
-            .map((e) => Observer(builder: (context) {
-                  return InkWell(
-                    onTap: () {
-                      weatherStore.setTempUnit(e);
-                    },
-                    child: Card(
-                      color: Colors.white
-                          .withOpacity(weatherStore.tempUnit == e ? 0.6 : 0.2),
-                      child: Center(
-                          child: Padding(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 8.0, horizontal: 12.0),
-                        child: Text(getFormattedDegree(e)),
-                      )),
-                    ),
-                  );
-                }))
-            .toList(),
+        actions: [
+          Container(
+              width: 35.0.w,
+              child: InkWell(
+                onTap: () {
+                  showLocationSearchDialog(context);
+                },
+                child: Card(
+                  color: Colors.white.withOpacity(0.6),
+                  child: Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Icon(
+                          Icons.location_on_rounded,
+                          color: Colors.black,
+                        ),
+                      ),
+                      Flexible(
+                        child: Padding(
+                            padding: const EdgeInsetsDirectional.only(end: 4.0),
+                            child: Observer(
+                                builder: (_) => AutoSizeText(
+                                      weatherStore.locationName ?? "",
+                                      maxLines: 2,
+                                      minFontSize: 6,
+                                    ))),
+                      )
+                    ],
+                  ),
+                ),
+              ))
+        ]..addAll(TempUnit.values
+            .map((e) => Container(
+                  child: Observer(builder: (context) {
+                    return InkWell(
+                      onTap: () {
+                        weatherStore.setTempUnit(e);
+                      },
+                      child: Card(
+                        color: Colors.white.withOpacity(
+                            weatherStore.tempUnit == e ? 0.6 : 0.2),
+                        child: Center(
+                            child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 8.0, horizontal: 12.0),
+                          child: Text(getFormattedDegree(e)),
+                        )),
+                      ),
+                    );
+                  }),
+                ))
+            .toList()),
         body: SmartRefresher(
           onRefresh: _onRefresh,
           controller: _refreshController,
@@ -416,5 +453,49 @@ class _WeatherPageState extends State<WeatherPage> {
             ),
           ),
         ));
+  }
+
+  void showLocationSearchDialog(BuildContext context) {
+    weatherSearchStore.resetState();
+    showDialog(
+        context: context,
+        builder: (context) {
+          return AlertDialog(
+            contentPadding: EdgeInsets.all(8),
+            content: Container(
+              width: 50.0.w,
+              height: 50.0.h,
+              child: Observer(
+                builder: (context) {
+                  return Column(
+                    children: [
+                      RoundedTextField(
+                        onChanged: (s) =>
+                            weatherSearchStore.searchLocations(s!),
+                        labelText: S.current.searchLocation,
+                      ),
+                      weatherSearchStore.isLoading
+                          ? Center(child: CircularProgressIndicator())
+                          : Expanded(
+                              child: ListView(
+                                  shrinkWrap: true,
+                                  children: (weatherSearchStore.locations)
+                                      .map((x) => ListTile(
+                                            title: Text(x.title),
+                                            onTap: () {
+                                              Navigator.of(context).pop();
+                                              weatherStore.init(
+                                                  locationModel: x);
+                                            },
+                                          ))
+                                      .toList()),
+                            )
+                    ],
+                  );
+                },
+              ),
+            ),
+          );
+        });
   }
 }

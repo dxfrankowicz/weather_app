@@ -17,13 +17,13 @@ mixin _$WeatherStore on _WeatherStoreBase, Store {
               () => super.getCurrentDayWeather,
               name: '_WeatherStoreBase.getCurrentDayWeather'))
           .value;
-  Computed<bool>? _$isLoadingWeatherComputed;
+  Computed<bool>? _$isLoadingComputed;
 
   @override
-  bool get isLoadingWeather => (_$isLoadingWeatherComputed ??= Computed<bool>(
-          () => super.isLoadingWeather,
-          name: '_WeatherStoreBase.isLoadingWeather'))
-      .value;
+  bool get isLoading =>
+      (_$isLoadingComputed ??= Computed<bool>(() => super.isLoading,
+              name: '_WeatherStoreBase.isLoading'))
+          .value;
   Computed<bool>? _$hasErrorComputed;
 
   @override
@@ -44,6 +44,21 @@ mixin _$WeatherStore on _WeatherStoreBase, Store {
   set woeid(int? value) {
     _$woeidAtom.reportWrite(value, super.woeid, () {
       super.woeid = value;
+    });
+  }
+
+  final _$locationNameAtom = Atom(name: '_WeatherStoreBase.locationName');
+
+  @override
+  String? get locationName {
+    _$locationNameAtom.reportRead();
+    return super.locationName;
+  }
+
+  @override
+  set locationName(String? value) {
+    _$locationNameAtom.reportWrite(value, super.locationName, () {
+      super.locationName = value;
     });
   }
 
@@ -107,19 +122,63 @@ mixin _$WeatherStore on _WeatherStoreBase, Store {
     });
   }
 
+  final _$locationByLatLongFutureAtom =
+      Atom(name: '_WeatherStoreBase.locationByLatLongFuture');
+
+  @override
+  ObservableFuture<List<SearchLocationModel>>? get locationByLatLongFuture {
+    _$locationByLatLongFutureAtom.reportRead();
+    return super.locationByLatLongFuture;
+  }
+
+  @override
+  set locationByLatLongFuture(
+      ObservableFuture<List<SearchLocationModel>>? value) {
+    _$locationByLatLongFutureAtom
+        .reportWrite(value, super.locationByLatLongFuture, () {
+      super.locationByLatLongFuture = value;
+    });
+  }
+
   final _$lastExceptionAtom = Atom(name: '_WeatherStoreBase.lastException');
 
   @override
-  Exception? get lastException {
+  dynamic get lastException {
     _$lastExceptionAtom.reportRead();
     return super.lastException;
   }
 
   @override
-  set lastException(Exception? value) {
+  set lastException(dynamic value) {
     _$lastExceptionAtom.reportWrite(value, super.lastException, () {
       super.lastException = value;
     });
+  }
+
+  final _$isLoadingLocalizationAtom =
+      Atom(name: '_WeatherStoreBase.isLoadingLocalization');
+
+  @override
+  bool get isLoadingLocalization {
+    _$isLoadingLocalizationAtom.reportRead();
+    return super.isLoadingLocalization;
+  }
+
+  @override
+  set isLoadingLocalization(bool value) {
+    _$isLoadingLocalizationAtom.reportWrite(value, super.isLoadingLocalization,
+        () {
+      super.isLoadingLocalization = value;
+    });
+  }
+
+  final _$initAsyncAction = AsyncAction('_WeatherStoreBase.init');
+
+  @override
+  Future<void> init(
+      {int? woeid, String? latLong, SearchLocationModel? locationModel}) {
+    return _$initAsyncAction.run(() => super
+        .init(woeid: woeid, latLong: latLong, locationModel: locationModel));
   }
 
   final _$fetchWeatherAsyncAction =
@@ -134,11 +193,11 @@ mixin _$WeatherStore on _WeatherStoreBase, Store {
       ActionController(name: '_WeatherStoreBase');
 
   @override
-  void init(int woeid) {
+  void getLocationAndInit() {
     final _$actionInfo = _$_WeatherStoreBaseActionController.startAction(
-        name: '_WeatherStoreBase.init');
+        name: '_WeatherStoreBase.getLocationAndInit');
     try {
-      return super.init(woeid);
+      return super.getLocationAndInit();
     } finally {
       _$_WeatherStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -192,13 +251,16 @@ mixin _$WeatherStore on _WeatherStoreBase, Store {
   String toString() {
     return '''
 woeid: ${woeid},
+locationName: ${locationName},
 tempUnit: ${tempUnit},
 selectedIndex: ${selectedIndex},
 location: ${location},
 weatherFuture: ${weatherFuture},
+locationByLatLongFuture: ${locationByLatLongFuture},
 lastException: ${lastException},
+isLoadingLocalization: ${isLoadingLocalization},
 getCurrentDayWeather: ${getCurrentDayWeather},
-isLoadingWeather: ${isLoadingWeather},
+isLoading: ${isLoading},
 hasError: ${hasError}
     ''';
   }

@@ -16,7 +16,7 @@ class _WeatherClient implements WeatherClient {
   @override
   Future<List<SearchLocationModel>> searchLocationByName(location) async {
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{r'location': location};
+    final queryParameters = <String, dynamic>{r'query': location};
     final _data = <String, dynamic>{};
     final _result = await _dio.fetch<List<dynamic>>(
         _setStreamType<List<SearchLocationModel>>(

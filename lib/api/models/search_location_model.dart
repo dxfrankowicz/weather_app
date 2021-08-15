@@ -10,7 +10,7 @@ class SearchLocationModel {
   int woeid;
   @JsonKey(name: "latt_long")
   String lattLong;
-  int distance;
+  int? distance;
 
   double? get latitude => double.tryParse(lattLong.split(',').first);
 

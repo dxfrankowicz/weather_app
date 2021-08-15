@@ -107,7 +107,7 @@ class AppScaffold extends StatefulWidget {
     this.title,
     this.centerTitle = true,
     this.actions,
-    this.resizeToAvoidBottomInset,
+    this.resizeToAvoidBottomInset = false,
     this.bottom,
   });
 
@@ -128,7 +128,7 @@ class _AppScaffoldState extends State<AppScaffold> {
         floatingActionButtonLocation: widget.floatingActionButtonLocation,
         floatingActionButtonAnimator: widget.floatingActionButtonAnimator,
         endDrawer: widget.endDrawer,
-        resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset ?? true,
+        resizeToAvoidBottomInset: widget.resizeToAvoidBottomInset ?? false,
         appBar: widget.appBar ??
             WEATHERScaffold.appBar(context,
                 actions: widget.actions ?? [],

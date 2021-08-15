@@ -26,6 +26,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "humidity" : MessageLookupByLibrary.simpleMessage("Humidity"),
     "noInternetConnectionError" : MessageLookupByLibrary.simpleMessage("No internet connection"),
     "retry" : MessageLookupByLibrary.simpleMessage("Retry"),
+    "searchLocation" : MessageLookupByLibrary.simpleMessage("Search location"),
     "wind" : MessageLookupByLibrary.simpleMessage("Wind")
   };
 }
