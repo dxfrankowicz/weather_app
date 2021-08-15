@@ -9,9 +9,11 @@ A weather app in Flutter based on metaweather API.
 - Displaying weather SVG icon
 - Location search (can display weather for chosen city)
 
-<img alt="Portrait screen" src="screenshots/Screenshot_1629017233.png" title="Portrait screen" width="50%" height="50%/">
+APK file is in apk folder.
+
+<img alt="Portrait screen" src="screenshots/Screenshot_1629017233.png" title="Portrait screen" width="30%" height="30%/"> <img alt="Search location" src="screenshots/Screenshot_1629017288.png" title="Search location" width=30% height=30%/>
+
 <img alt="Landscape screen" src="screenshots/Screenshot_1629017260.png" title="Landscape screen" width=50% height=50%/>
-<img alt="Search location" src="screenshots/Screenshot_1629017288.png" title="Search location" width=50% height=50%/>
 
 
 
