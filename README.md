@@ -7,6 +7,7 @@ A weather app in Flutter based on metaweather API.
 - Supports both portrait and landscape orientation
 - Dynamic temperature unit change (C/F)
 - Displaying weather SVG icon
+- Location detection
 - Location search (can display weather for chosen city)
 
 APK file is in apk folder.
