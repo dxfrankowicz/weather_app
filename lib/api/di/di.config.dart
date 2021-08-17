@@ -10,7 +10,7 @@ import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i7;
 import 'package:shared_preferences/shared_preferences.dart' as _i4;
 
-import '../../constans/env.dart' as _i6;
+import '../../constants/env.dart' as _i6;
 import '../../pages/weather/weather_search_store.dart' as _i11;
 import '../../pages/weather/weather_store.dart' as _i12;
 import '../../storage/storage.dart' as _i5;

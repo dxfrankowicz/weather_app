@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
 import 'package:logger/logger.dart';
 import 'package:flutter/foundation.dart' as foundation;
-import 'package:weather_app/constans/env.dart';
+import 'package:weather_app/constants/env.dart';
 import 'package:weather_app/utils/logconsole/in_memory_logs.dart';
 
 @module

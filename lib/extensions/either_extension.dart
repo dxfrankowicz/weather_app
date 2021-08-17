@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:stack_trace/stack_trace.dart';
 
 extension TaskX<T extends Either<Object, dynamic>> on Task<T> {
   Task<Either<Exception, A>> mapLeftToException<A>() {

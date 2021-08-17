@@ -1,8 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:mobx/mobx.dart';
-import 'package:weather_app/constans/strings.dart';
+import 'package:weather_app/constants/strings.dart';
 
 class WEATHERScaffold {
   static Widget get(
@@ -72,6 +71,7 @@ class WEATHERScaffold {
       );
 }
 
+//ignore: must_be_immutable
 class AppScaffold extends StatefulWidget {
   var appBar;
   var body;

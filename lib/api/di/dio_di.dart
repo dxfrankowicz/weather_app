@@ -1,11 +1,7 @@
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:logger/logger.dart';
 import 'package:pretty_dio_logger/pretty_dio_logger.dart';
-import 'package:weather_app/api/interceptors/api_error_message_interceptor.dart';
-import 'package:weather_app/api/interceptors/dio_log_interceptor.dart';
-import 'package:weather_app/api/interceptors/internal_server_error_interceptor.dart';
-import 'package:weather_app/constans/env.dart';
+import 'package:weather_app/constants/env.dart';
 import 'package:weather_app/utils/log/log_it.dart';
 import 'package:weather_app/utils/logconsole/in_memory_logs.dart';
 

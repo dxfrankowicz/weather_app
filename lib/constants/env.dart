@@ -1,10 +1,9 @@
 import 'package:flutter/foundation.dart' as foundation;
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart';
 import 'package:injectable/injectable.dart';
 import 'package:dartz/dartz.dart';
 import 'package:weather_app/api/di/di.dart';
-import 'package:weather_app/constans/urls.dart';
+import 'package:weather_app/constants/urls.dart';
 import 'package:weather_app/storage/storage.dart';
 
 part 'env.g.dart';
@@ -23,8 +22,8 @@ class Env {
 
   EnvData get data => _env;
 
-  final bool IS_RELEASE = foundation.kReleaseMode;
-  final bool IS_DEBUG = !foundation.kReleaseMode;
+  final bool isRelease = foundation.kReleaseMode;
+  final bool isDebug = !foundation.kReleaseMode;
 
   @factoryMethod
   static Future<Env> create(Storage storage) async {
@@ -33,11 +32,11 @@ class Env {
     }).getOrElse(() => false);
     storage.removeFlavor();
     if (devFromFlavor) {
-      await storage.setEnvData(DEV);
+      await storage.setEnvData(dev);
     }
 
     var envData =
-        storage.getEnvData() ?? (foundation.kReleaseMode ? PROD : DEV);
+        storage.getEnvData() ?? (foundation.kReleaseMode ? prod : dev);
     return Env(envData, storage);
   }
 
@@ -49,7 +48,7 @@ class Env {
     return _env;
   }
 
-  static final EnvData DEV = EnvData(
+  static final EnvData dev = EnvData(
     debug: true,
     debugApiClient: true,
     loggingEnabled: true,
@@ -57,7 +56,7 @@ class Env {
     apiBaseUrl: UrlConstants.URL,
   );
 
-  static final EnvData PROD = EnvData(
+  static final EnvData prod = EnvData(
     debug: false,
     debugApiClient: false,
     loggingEnabled: false,

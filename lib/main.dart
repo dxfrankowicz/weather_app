@@ -4,9 +4,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:sizer/sizer.dart';
 import 'package:weather_app/api/di/di.dart' as di;
 import 'package:weather_app/pages/weather/weather_page.dart';
-
-import 'api/di/di.dart';
-import 'constans/strings.dart';
+import 'constants/strings.dart';
 import 'generated/l10n.dart';
 
 void main() {

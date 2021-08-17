@@ -204,6 +204,17 @@ mixin _$WeatherStore on _WeatherStoreBase, Store {
   }
 
   @override
+  void setLocationName(String l) {
+    final _$actionInfo = _$_WeatherStoreBaseActionController.startAction(
+        name: '_WeatherStoreBase.setLocationName');
+    try {
+      return super.setLocationName(l);
+    } finally {
+      _$_WeatherStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setIndex(int index) {
     final _$actionInfo = _$_WeatherStoreBaseActionController.startAction(
         name: '_WeatherStoreBase.setIndex');

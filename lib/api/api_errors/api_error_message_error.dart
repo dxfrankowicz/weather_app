@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 import 'package:json_annotation/json_annotation.dart';
-import 'package:meta/meta.dart';
 
 class ApiErrorMessageError extends DioError {
   @JsonKey(name: 'message')

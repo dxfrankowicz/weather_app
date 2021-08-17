@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:intl/date_symbol_data_local.dart';
@@ -151,7 +149,7 @@ class MyDateUtils {
     return DateTime.parse(formatApiDate(d));
   }
 
-  static String formatHour(DateTime d) {
+  static String formatHour(DateTime? d) {
     if (d == null) return "";
     var formatter = new DateFormat('HH:mm');
     return formatter.format(d);
@@ -210,7 +208,7 @@ class MyDateUtils {
     return lastDayOfMonth;
   }
 
-  static String formatDateTime(DateTime d) {
+  static String formatDateTime(DateTime? d) {
     if (d == null) return "";
 
     var formatter = new DateFormat('dd-MM-yyyy HH:mm');

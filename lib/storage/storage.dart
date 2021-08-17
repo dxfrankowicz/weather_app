@@ -1,13 +1,11 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:ui';
-
 import 'package:dartz/dartz.dart';
 import 'package:logging/logging.dart';
 import 'package:injectable/injectable.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:weather_app/extensions/either_extension.dart';
-import 'package:weather_app/constans/env.dart';
+import 'package:weather_app/constants/env.dart';
 
 @lazySingleton
 class Storage {
@@ -56,12 +54,10 @@ class Storage {
     }).attempt().mapLeftToException<String>().run();
   }
 
-  @deprecated
   String? getFlavor() {
     return sharedPreferences.getString("flavor");
   }
 
-  @deprecated
   void removeFlavor() {
     if (sharedPreferences.containsKey("flavor")) {
       sharedPreferences.remove("flavor");

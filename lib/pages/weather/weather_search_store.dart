@@ -1,16 +1,10 @@
 import 'dart:io';
-
 import 'package:dio/dio.dart';
-import 'package:logging/logging.dart';
 import 'dart:async';
-
-import 'package:injectable/injectable.dart';
-import 'package:mobx/mobx.dart';
 import 'package:injectable/injectable.dart';
 import 'package:mobx/mobx.dart';
 import 'package:weather_app/api/clients/weather_client.dart';
 import 'package:weather_app/api/di/di.dart';
-import 'package:weather_app/api/models/location_model.dart';
 import 'package:weather_app/api/models/search_location_model.dart';
 import 'package:weather_app/utils/log/log.dart';
 
